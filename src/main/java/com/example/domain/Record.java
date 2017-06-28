@@ -2,6 +2,8 @@ package com.example.domain;
 
 import java.math.BigDecimal;
 
+import com.example.record.service.impl.Constants;
+
 public class Record {
 
     private Currency currency;
@@ -17,6 +19,22 @@ public class Record {
     private String beneficiaryName;
 
     private Bank bank;
+
+    public boolean isDebit() {
+        return getSign().equalsIgnoreCase(Constants.DEBIT);
+    }
+
+    public boolean hasNoFee() {
+        return getFeeRecord().compareTo(0) == 0;
+    }
+
+    public boolean isNoCounterTransferRecord() {
+        return getIsCounterTransferRecord().compareTo(0) == 0;
+    }
+
+    public boolean isCredit() {
+        return getSign().equalsIgnoreCase(Constants.CREDIT);
+    }
 
     public class Bank {
         private String name;
@@ -94,5 +112,9 @@ public class Record {
 
     public void setBeneficiaryAccountNumber(String beneficiaryAccountNumber) {
         this.beneficiaryAccountNumber = beneficiaryAccountNumber;
+    }
+
+    public Integer getCurrencyCode() {
+        return currency.getCode();
     }
 }

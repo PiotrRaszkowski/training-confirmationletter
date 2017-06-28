@@ -1,5 +1,7 @@
 package com.example.domain;
 
+import com.example.record.service.impl.Constants;
+
 public class Client {
 
     private String profile;
@@ -40,5 +42,9 @@ public class Client {
 
     public void setCreditDebit(String creditDebit) {
         this.creditDebit = creditDebit;
+    }
+
+    public boolean isBalanced() {
+        return getCounterTransfer().equalsIgnoreCase(Constants.TRUE);
     }
 }

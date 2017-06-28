@@ -1,10 +1,12 @@
 package com.example.record.domain;
 
+import com.example.record.service.impl.Constants;
+
 public class TempRecord {
 
     private String sign;
 
-    private String currencycode;
+    private Integer currencycode;
 
     private String amount;
 
@@ -16,11 +18,11 @@ public class TempRecord {
         this.sign = sign;
     }
 
-    public String getCurrencycode() {
+    public Integer getCurrencyCode() {
         return currencycode;
     }
 
-    public void setCurrencycode(String currencycode) {
+    public void setCurrencycode(Integer currencycode) {
         this.currencycode = currencycode;
     }
 
@@ -30,5 +32,9 @@ public class TempRecord {
 
     public void setAmount(String amount) {
         this.amount = amount;
+    }
+
+    public boolean isDebitTempRecord() {
+        return getSign().equalsIgnoreCase(Constants.DEBIT);
     }
 }

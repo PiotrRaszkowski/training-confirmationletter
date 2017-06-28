@@ -1,6 +1,8 @@
 package com.example.domain;
 
 import java.math.BigDecimal;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 public class HashBatchRecordsBalance {
@@ -9,7 +11,7 @@ public class HashBatchRecordsBalance {
 
     private BigDecimal hashTotalDebit;
 
-    private Map<Integer, BatchTotal> batchTotals;
+    private Map<Integer, BatchTotal> batchTotals = new HashMap<>();
 
     private Long recordsTotal;
 
@@ -63,5 +65,18 @@ public class HashBatchRecordsBalance {
 
     public void setTotalFee(String totalFee) {
         this.totalFee = totalFee;
+    }
+
+    public Collection<BatchTotal> getBatchTotalsValues() {
+        return batchTotals.values();
+    }
+
+    public BigDecimal computeBatchTotals(String amountDivider, String sign) {
+        BigDecimal sum = BigDecimal.ZERO;
+        for (BatchTotal total : getBatchTotalsValues()) {
+            BigDecimal value = total.getValueForSign(sign);
+            sum = sum.add(value);
+        }
+        return sum.divide(new BigDecimal(amountDivider));
     }
 }

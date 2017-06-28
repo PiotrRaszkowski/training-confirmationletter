@@ -2,7 +2,7 @@ package com.example.record.service.impl;
 
 public class Constants {
 
-    public static final String YES = "yesyesyes";
+    public static final String YES = "true";
 
     public static final String CURRENCY_EURO = "EUR";
     public static final String CURRENCY_FL = "FL";
